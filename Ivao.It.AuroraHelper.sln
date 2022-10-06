@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ivao.It.AuroraHelper.Application", "src\Application\Ivao.It.AuroraHelper.Application.csproj", "{C03C3149-38E4-46F0-A895-0C2BA1052437}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ivao.It.AuroraHelper.EnavData", "src\EnavData\Ivao.It.AuroraHelper.EnavData.csproj", "{3F776E4F-8F74-4925-8535-617468C754B8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ivao.It.AuroraHelper.Enav.Test", "test\Ivao.It.AuroraHelper.Enav.Test.csproj", "{D143014A-796E-4B3F-ABFC-958BB7092CD0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{25E1E001-4773-4C6E-A84C-73CD73B9D121}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C03C3149-38E4-46F0-A895-0C2BA1052437}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C03C3149-38E4-46F0-A895-0C2BA1052437}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C03C3149-38E4-46F0-A895-0C2BA1052437}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C03C3149-38E4-46F0-A895-0C2BA1052437}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F776E4F-8F74-4925-8535-617468C754B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F776E4F-8F74-4925-8535-617468C754B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F776E4F-8F74-4925-8535-617468C754B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F776E4F-8F74-4925-8535-617468C754B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D143014A-796E-4B3F-ABFC-958BB7092CD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D143014A-796E-4B3F-ABFC-958BB7092CD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D143014A-796E-4B3F-ABFC-958BB7092CD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D143014A-796E-4B3F-ABFC-958BB7092CD0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {452E0B05-1902-46BE-AD39-4A6C5F43E02B}
+	EndGlobalSection
+EndGlobal

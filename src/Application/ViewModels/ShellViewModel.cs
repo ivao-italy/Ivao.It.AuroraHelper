@@ -1,0 +1,10 @@
+﻿using System.Threading.Tasks;
+
+namespace Ivao.It.AuroraHelper.Application.ViewModels;
+
+public class ShellViewModel : IViewModel
+{
+    public bool IsLoaded { get; set; }
+
+    public Task Loaded() => Task.CompletedTask;
+}
