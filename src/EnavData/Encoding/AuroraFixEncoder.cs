@@ -5,6 +5,21 @@ namespace Ivao.It.AuroraHelper.EnavData.Encoding;
 
 public class AuroraFixEncoder : IEncodingStrategy
 {
+    private readonly FixType _type;
+
+    public enum FixType
+    {
+        All,
+        Enr,
+        Term,
+        Boundary
+    }
+
+    public AuroraFixEncoder(FixType type = FixType.All)
+    {
+        _type = type;
+    }
+
     public string? Encode<T>(T item) where T : IEnavModel
     {
         var fix = item as EnavFix;
@@ -16,6 +31,16 @@ public class AuroraFixEncoder : IEncodingStrategy
 
         var boundary = fix.IsFraBoundary ? "1" : "0";
 
-        return $"{fix.Id};{fix.Lat.EnavCoordsToAurora()};{fix.Lon.EnavCoordsToAurora()};{fixType};{boundary};";
+
+        switch (_type)
+        {
+            case FixType.All:
+            case FixType.Enr when fix.IsEnroute:
+            case FixType.Term when fix.IsTerminal:
+            case FixType.Boundary when fix.IsFraBoundary:
+                return $"{fix.Id};{fix.Lat.EnavCoordsToAurora()};{fix.Lon.EnavCoordsToAurora()};{fixType};{boundary};";
+            default:
+                return null;
+        }
     }
 }
