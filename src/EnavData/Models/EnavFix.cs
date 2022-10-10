@@ -19,8 +19,8 @@ public class EnavFix : IEnavModel
         Lat = TryMatch(fixRow, Consts.FixLatRegex, "Lat");
         Lon = TryMatch(fixRow, Consts.FixLonRegex, "Lon");
 
-        IsTerminal = Consts.FixTerminalRegex.IsMatch(fixRow);
         IsEnroute = Consts.FixAwyRegex.IsMatch(fixRow) || Consts.FixFraAwyRegex.IsMatch(fixRow);
+        IsTerminal = Consts.FixTerminalRegex.IsMatch(fixRow);
         IsFraBoundary = Consts.FixFraBoundaryRegex.IsMatch(fixRow);
         IsFra = Consts.FixFraRegex.IsMatch(fixRow);
     }
@@ -33,5 +33,5 @@ public class EnavFix : IEnavModel
     }
 
     public override string ToString()
-        => $"{Id} {Lat} {Lon} | Terminal: {IsTerminal} | Enroute: {IsEnroute} | Boundary: {IsFraBoundary}";
+        => $"{Id} {Lat} {Lon} | Terminal: {IsTerminal} | Enroute: {IsEnroute} | Boundary: {IsFraBoundary} | Fra: {IsFra}";
 }

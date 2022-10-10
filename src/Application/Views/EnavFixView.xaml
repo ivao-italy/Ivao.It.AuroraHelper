@@ -26,7 +26,7 @@
             Identifica i fix in base al contenuto delle colonne 3, 4 e 5 della tabella del file <Bold>ENR 4.4.1</Bold> del ciclo AIP secondo la seguente logica:<LineBreak/>
             - <Bold>Enroute:</Bold> Colonna 3 diversa da NIL, altre due colonne qualsiasi valore. Include anche tutti i fix FRA(I) non coinvolti nel sistema aeroviario nazionale.<LineBreak/>
             - <Bold>Terminal:</Bold> Colonna 4 diversa da NIL. Un FIX terminal può anche essere Enroute se rispetta le condizioni del punto precendente. Sarà quindi presente in entrambi i file.<LineBreak/>
-            - <Bold>Fra Boundary:</Bold> Colonna 5 valorizzata con uno valore diverso da FRA(I).
+            - <Bold>Boundary:</Bold> Tutti i fix enroute con colonna FRA (5) valorizzata, a patto che non siano anche terminal. In tal caso compariranno solo nella lista dei terminal.
             
 
 

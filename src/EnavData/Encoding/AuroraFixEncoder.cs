@@ -41,7 +41,7 @@ public class AuroraFixEncoder : IEncodingStrategy
             case FixType.All:
             case FixType.Enr when fix.IsEnroute:
             case FixType.Term when fix.IsTerminal:
-            case FixType.Boundary when fix.IsFraBoundary:
+            case FixType.Boundary when fix.IsEnroute && fix.IsFra && !fix.IsTerminal:
                 return $"{fix.Id};{fix.Lat.EnavCoordsToAurora()};{fix.Lon.EnavCoordsToAurora()};{fixType};{boundary};";
             default:
                 return null;
