@@ -38,9 +38,13 @@ public class EnavTests
 
     [InlineData(AuroraFixEncoder.FixType.Boundary, "PEVAL", true)]
     [InlineData(AuroraFixEncoder.FixType.Boundary, "OSMAR", true)]
-    [InlineData(AuroraFixEncoder.FixType.Boundary, "ODINA", true)]
+    [InlineData(AuroraFixEncoder.FixType.Boundary, "ODINA", false)]
     [InlineData(AuroraFixEncoder.FixType.Boundary, "ROKUD", false)]
     [InlineData(AuroraFixEncoder.FixType.Boundary, "RONIV", false)]
+
+    [InlineData(AuroraFixEncoder.FixType.Enr, "ABAKO", true)]
+    [InlineData(AuroraFixEncoder.FixType.Term, "ABAKO", false)]
+    [InlineData(AuroraFixEncoder.FixType.Boundary, "ABAKO", true)]
     public void Extract_441_Read_ConvertToAurora(AuroraFixEncoder.FixType type, string fixToFind, bool result)
     {
         var doc = new EnrouteDoc441();
