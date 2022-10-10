@@ -15,12 +15,16 @@ public class AuroraFixEncoder : IEncodingStrategy
         Boundary
     }
 
-    public AuroraFixEncoder(FixType type = FixType.All)
+    private AuroraFixEncoder(FixType type = FixType.All)
     {
         _type = type;
     }
+    public static readonly AuroraFixEncoder All = new AuroraFixEncoder(FixType.All);
+    public static readonly AuroraFixEncoder Enroute = new AuroraFixEncoder(FixType.Enr);
+    public static readonly AuroraFixEncoder Terminal = new AuroraFixEncoder(FixType.Term);
+    public static readonly AuroraFixEncoder Boundary = new AuroraFixEncoder(FixType.Boundary);
 
-    public string? Encode<T>(T item) where T : IEnavModel
+    string? IEncodingStrategy.Encode<T>(T item)
     {
         var fix = item as EnavFix;
         if (fix is null) throw new InvalidOperationException($"Only type {nameof(EnavFix)} allowed for {nameof(AuroraFixEncoder)}.");
@@ -43,4 +47,5 @@ public class AuroraFixEncoder : IEncodingStrategy
                 return null;
         }
     }
+
 }

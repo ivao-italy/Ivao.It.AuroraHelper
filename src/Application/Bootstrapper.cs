@@ -1,5 +1,7 @@
 ﻿using Caliburn.Micro;
 using Ivao.It.AuroraHelper.Application.ViewModels;
+using Ivao.It.AuroraHelper.EnavData;
+
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -29,9 +31,11 @@ public class Bootstrapper : BootstrapperBase
 
         //ViewModels
         sc.AddScoped<DummyViewModel>();
+        sc.AddScoped<EnavFixViewModel>();
         sc.AddScoped<ShellViewModel>();
 
         //Services
+        sc.AddTransient<IEnavDocHandler, EnrouteDoc441>();
 
         //Caliburn
         sc.AddScoped<IWindowManager, WindowManager>();
@@ -48,9 +52,9 @@ public class Bootstrapper : BootstrapperBase
     protected override IEnumerable<object> GetAllInstances(Type service)
         => _serviceProvider.GetServices(service);
 
-    protected override void OnStartup(object sender, StartupEventArgs e)
+    protected override async void OnStartup(object sender, StartupEventArgs e)
     {
-        DisplayRootViewForAsync<ShellViewModel>(
+        await DisplayRootViewForAsync<ShellViewModel>(
             new Dictionary<string, object>{
                 {"Title", "IVAO IT Aurora Helper" },
                 {"MinWidth", 600 },

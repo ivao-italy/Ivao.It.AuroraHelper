@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="Ivao.It.AuroraHelper.Application.Views.EnavFixView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Ivao.It.AuroraHelper.Application.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="65"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Foreground="White" FontSize="25" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center">ENAV FIX EXPORT</TextBlock>
+        <GroupBox Grid.Row="2" Margin="5">
+            <DockPanel >
+                <TextBlock DockPanel.Dock="Top">END 4.4.1 File</TextBlock>
+                <Button DockPanel.Dock="Right" Margin="2" Width="50" x:Name="BrowseForFile">...</Button>
+                <TextBox Margin="2" IsEnabled="False" x:Name="FilePath"></TextBox>
+            </DockPanel>
+        </GroupBox>
+        <TextBlock Grid.Row="1" TextWrapping="Wrap">
+            Identifica i fix in base al contenuto delle colonne 3, 4 e 5 della tabella del file <Bold>ENR 4.4.1</Bold> del ciclo AIP secondo la seguente logica:<LineBreak/>
+            - <Bold>Enroute:</Bold> Colonna 3 diversa da NIL, altre due colonne qualsiasi valore. Include anche tutti i fix FRA(I) non coinvolti nel sistema aeroviario nazionale.<LineBreak/>
+            - <Bold>Terminal:</Bold> Colonna 4 diversa da NIL. Un FIX terminal può anche essere Enroute se rispetta le condizioni del punto precendente. Sarà quindi presente in entrambi i file.<LineBreak/>
+            - <Bold>Fra Boundary:</Bold> Colonna 5 valorizzata con uno valore diverso da FRA(I).
+            
+
+
+        </TextBlock>
+
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.Resources>
+                <Style TargetType="Button" BasedOn="{StaticResource MahApps.Styles.Button}">
+                    <Setter Property="Margin" Value="5"/>
+                </Style>
+            </Grid.Resources>
+
+            <Button x:Name="ExportEnroute">Enroute</Button>
+            <Button Grid.Column="1" x:Name="ExportTerminal">Terminal</Button>
+            <Button Grid.Column="2" x:Name="ExportBoundary">Boundary</Button>
+        </Grid>
+    </Grid>
+</UserControl>

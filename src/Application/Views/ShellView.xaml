@@ -3,11 +3,19 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:svg="http://sharpvectors.codeplex.com/svgc/"
         xmlns:local="clr-namespace:Ivao.It.AuroraHelper.Application"
         xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        mc:Ignorable="d"                 
-        Title="MainWindow" Height="450" Width="800">
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" >
+        <!--Background="DarkGray"-->
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="150"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <svg:SvgViewbox Source="/Images/Logo_IT_WHITE.svg" Height="90" HorizontalAlignment="Left" Margin="30,0,0,0" />
+        <ContentControl x:Name="ActiveItem" Margin="20" Grid.Row="1"/>
 
     </Grid>
 </mah:MetroWindow>

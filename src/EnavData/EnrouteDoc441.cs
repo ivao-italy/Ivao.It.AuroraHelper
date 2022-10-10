@@ -6,23 +6,25 @@ namespace Ivao.It.AuroraHelper.EnavData;
 
 public class EnrouteDoc441 : IEnavDocHandler
 {
-    private readonly string _filePath;
+    private string _filePath = null!;
     private readonly List<string> _rows;
+    private string _outputContent;
 
     public string? RawContents { get; private set; }
     public List<EnavFix> Fixes { get; private set; }
     public bool IsRead { get; private set; }
 
-    public EnrouteDoc441(string filePath)
+
+    public EnrouteDoc441()
     {
-        _filePath = filePath;
         _rows = new();
         Fixes = new();
     }
 
-    public IEnavDocHandler Read()
+    public IEnavDocHandler Read(string filePath)
     {
-        ArgumentNullException.ThrowIfNull(_filePath);
+        ArgumentNullException.ThrowIfNull(filePath);
+        _filePath = filePath;
         var contents = Pdf.ReadText(_filePath);
 
         //PDF Cleanup & mapping
@@ -43,12 +45,6 @@ public class EnrouteDoc441 : IEnavDocHandler
         return this;
     }
 
-   
-    public Task WriteAsync()
-    {
-        throw new NotImplementedException();
-    }
-
     public string GetContents(IEncodingStrategy encodingStrategy)
     {
         var sb = new StringBuilder();
@@ -57,6 +53,11 @@ public class EnrouteDoc441 : IEnavDocHandler
             var encodedLine = encodingStrategy.Encode(fix);
             if(encodedLine is not null) sb.AppendLine(encodedLine);
         }
-        return sb.ToString();
+        _outputContent = sb.ToString();
+        return _outputContent;
     }
+
+
+    public async Task WriteToFileAsync(string filePath, CancellationToken cancellationToken = default)
+        => await File.WriteAllTextAsync(filePath, _outputContent, cancellationToken);
 }

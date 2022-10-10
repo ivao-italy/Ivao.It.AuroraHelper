@@ -1,13 +1,13 @@
 ﻿using Ivao.It.AuroraHelper.EnavData.Encoding;
-using Ivao.It.AuroraHelper.EnavData.Models;
 
 namespace Ivao.It.AuroraHelper.EnavData;
 
 public interface IEnavDocHandler
 {
-    IEnavDocHandler Read();
-    string GetContents(IEncodingStrategy encodingStrategy);
+    bool IsRead { get; }
 
-    Task WriteAsync();
+    IEnavDocHandler Read(string filePath);
+    string GetContents(IEncodingStrategy encodingStrategy);
+    Task WriteToFileAsync(string filePath, CancellationToken cancellationToken = default);
 
 }

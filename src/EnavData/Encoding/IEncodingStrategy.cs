@@ -5,5 +5,5 @@ namespace Ivao.It.AuroraHelper.EnavData.Encoding;
 
 public interface IEncodingStrategy
 {
-    string? Encode<T>(T item) where T : IEnavModel;
+    internal string? Encode<T>(T item) where T : IEnavModel;
 }
