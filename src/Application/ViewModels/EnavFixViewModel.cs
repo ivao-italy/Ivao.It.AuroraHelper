@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.IO;
+using System.Threading.Tasks;
 
 using Caliburn.Micro;
 
@@ -53,7 +54,8 @@ public class EnavFixViewModel : PropertyChangedBase, IViewModel
         dialog.Title = "Select ENAV ENR 4.4.1 file";
         if (dialog.ShowDialog() ?? false)
         {
-            this.FilePath = dialog.FileName;
+            if(File.Exists(dialog.FileName)) 
+                this.FilePath = dialog.FileName;
         }
     }
 

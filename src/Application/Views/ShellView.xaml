@@ -5,17 +5,46 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:svg="http://sharpvectors.codeplex.com/svgc/"
         xmlns:local="clr-namespace:Ivao.It.AuroraHelper.Application"
+        xmlns:icons="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" >
-        <!--Background="DarkGray"-->
+        Title="MainWindow" Height="450" Width="800">
+    <!--Background="DarkGray"-->
+    <mah:MetroWindow.IconTemplate>
+        <DataTemplate>
+            <svg:SvgViewbox Source="/Images/it_symbol_WHITE.svg" Height="22" Width="22" />    
+        </DataTemplate>        
+    </mah:MetroWindow.IconTemplate>
+    <mah:MetroWindow.LeftWindowCommands>
+        <mah:WindowCommands>            
+            <Button ToolTip="Wiki Ivao.aero for Aurora Sector File" Click="LaunchIvaoAuroraWiki">
+                <svg:SvgViewbox Source="/Images/logo_s_white.svg" Height="22" Width="22" />
+            </Button>
+            <Button ToolTip="Github issue tracking" Click="LaunchGitHub">
+                <icons:PackIconModern Kind="SocialGithubOctocat" Width="22" Height="22"/>
+            </Button>
+        </mah:WindowCommands>
+    </mah:MetroWindow.LeftWindowCommands>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="150"/>
             <RowDefinition/>
+            <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
         <svg:SvgViewbox Source="/Images/Logo_IT_WHITE.svg" Height="90" HorizontalAlignment="Left" Margin="30,0,0,0" />
         <ContentControl x:Name="ActiveItem" Margin="20" Grid.Row="1"/>
 
+
+        <StatusBar Grid.Row="2">
+            <StatusBarItem>© Ivao Italy Division</StatusBarItem>
+            <Separator Style="{StaticResource MahApps.Styles.Separator.StatusBar}" />
+            <StatusBarItem>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Margin="0,0,5,0">Made with </TextBlock>
+                    <icons:BootstrapIcons Kind="Heart" Width="12"/>
+                    <TextBlock Margin="5,0,0,0"> by IT-WM</TextBlock>
+                </StackPanel>
+            </StatusBarItem>
+        </StatusBar>
     </Grid>
 </mah:MetroWindow>

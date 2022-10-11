@@ -5,16 +5,24 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>Icons\it_symbol_WHITE_256.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\it_symbol_WHITE.svg" />
     <None Remove="Images\ivao_white.svg" />
     <None Remove="Images\Logo_IT_WHITE.svg" />
+    <None Remove="Images\logo_s_white.svg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Icons\it_symbol_WHITE_256.ico" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Caliburn.Micro" Version="4.0.212" />
     <PackageReference Include="MahApps.Metro" Version="2.4.9" />
+    <PackageReference Include="MahApps.Metro.IconPacks" Version="4.11.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="6.0.0" />
@@ -25,10 +33,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Images\it_symbol_WHITE.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Images\ivao_white.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Images\Logo_IT_WHITE.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\logo_s_white.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
