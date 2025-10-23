@@ -1,38 +1,58 @@
-﻿<mah:MetroWindow x:Class="Ivao.It.AuroraHelper.Application.Views.ShellView"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:svg="http://sharpvectors.codeplex.com/svgc/"
-        xmlns:local="clr-namespace:Ivao.It.AuroraHelper.Application"
-        xmlns:icons="http://metro.mahapps.com/winfx/xaml/iconpacks"
-        xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <!--Background="DarkGray"-->
+﻿<mah:MetroWindow
+    x:Class="Ivao.It.AuroraHelper.Application.Views.ShellView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:icons="http://metro.mahapps.com/winfx/xaml/iconpacks"
+    xmlns:local="clr-namespace:Ivao.It.AuroraHelper.Application"
+    xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:svg="http://sharpvectors.codeplex.com/svgc/"
+    Title="MainWindow"
+    Width="800"
+    Height="450"
+    d:Background="Black"
+    mc:Ignorable="d">
+    <!--  Background="DarkGray"  -->
     <mah:MetroWindow.IconTemplate>
         <DataTemplate>
-            <svg:SvgViewbox Source="/Images/it_symbol_WHITE.svg" Height="22" Width="22" />    
-        </DataTemplate>        
+            <svg:SvgViewbox
+                Width="22"
+                Height="22"
+                Source="/Images/it_symbol_WHITE.svg" />
+        </DataTemplate>
     </mah:MetroWindow.IconTemplate>
     <mah:MetroWindow.LeftWindowCommands>
-        <mah:WindowCommands>            
-            <Button ToolTip="Wiki Ivao.aero for Aurora Sector File" Click="LaunchIvaoAuroraWiki">
-                <svg:SvgViewbox Source="/Images/logo_s_white.svg" Height="22" Width="22" />
+        <mah:WindowCommands>
+            <Button Click="LaunchIvaoAuroraWiki" ToolTip="Wiki Ivao.aero for Aurora Sector File">
+                <svg:SvgViewbox
+                    Width="22"
+                    Height="22"
+                    Source="/Images/logo_s_white.svg" />
             </Button>
-            <Button ToolTip="Github issue tracking" Click="LaunchGitHub">
-                <icons:PackIconModern Kind="SocialGithubOctocat" Width="22" Height="22"/>
+            <Button Click="LaunchGitHub" ToolTip="Github issue tracking">
+                <icons:PackIconModern
+                    Width="22"
+                    Height="22"
+                    Kind="SocialGithubOctocat" />
             </Button>
         </mah:WindowCommands>
     </mah:MetroWindow.LeftWindowCommands>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="150"/>
-            <RowDefinition/>
-            <RowDefinition Height="20"/>
+            <RowDefinition Height="150" />
+            <RowDefinition />
+            <RowDefinition Height="20" />
         </Grid.RowDefinitions>
-        <svg:SvgViewbox Source="/Images/Logo_IT_WHITE.svg" Height="90" HorizontalAlignment="Left" Margin="30,0,0,0" />
-        <ContentControl x:Name="ActiveItem" Margin="20" Grid.Row="1"/>
+        <svg:SvgViewbox
+            Height="90"
+            Margin="30,0,0,0"
+            HorizontalAlignment="Left"
+            Source="/Images/Logo_IT_WHITE.svg" />
+        <ContentControl
+            x:Name="ActiveItem"
+            Grid.Row="1"
+            Margin="20" />
 
 
         <StatusBar Grid.Row="2">
@@ -40,13 +60,13 @@
             <Separator Style="{StaticResource MahApps.Styles.Separator.StatusBar}" />
             <StatusBarItem>
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Margin="0,0,5,0">Made with </TextBlock>
-                    <icons:BootstrapIcons Kind="Heart" Width="12"/>
-                    <TextBlock Margin="5,0,0,0"> by IT-WM</TextBlock>
+                    <TextBlock Margin="0,0,5,0">Made with</TextBlock>
+                    <icons:BootstrapIcons Width="12" Kind="Heart" />
+                    <TextBlock Margin="5,0,0,0">by IT-WM</TextBlock>
                 </StackPanel>
             </StatusBarItem>
             <StatusBarItem HorizontalContentAlignment="Right">
-                <TextBlock HorizontalAlignment="Right" Margin="0,0,5,0"> v 1.0.0</TextBlock>
+                <TextBlock Margin="0,0,5,0" HorizontalAlignment="Right">v 1.1.0</TextBlock>
             </StatusBarItem>
         </StatusBar>
     </Grid>
