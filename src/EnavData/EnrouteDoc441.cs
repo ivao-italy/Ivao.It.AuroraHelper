@@ -51,7 +51,7 @@ public class EnrouteDoc441 : IEnavDocHandler
         foreach (var fix in this.Fixes)
         {
             var encodedLine = encodingStrategy.Encode(fix);
-            if(encodedLine is not null) sb.AppendLine(encodedLine);
+            if(!string.IsNullOrWhiteSpace(encodedLine)) sb.AppendLine(encodedLine);
         }
         _outputContent = sb.ToString();
         return _outputContent;

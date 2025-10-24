@@ -33,8 +33,6 @@ public class EnavFixViewModel : PropertyChangedBase, IViewModel
             _filePath = value;
             NotifyOfPropertyChange();
             NotifyOfPropertyChange(() => CanExportAll);
-            NotifyOfPropertyChange(() => CanExportEnroute);
-            NotifyOfPropertyChange(() => CanExportTerminal);
             NotifyOfPropertyChange(() => CanExportBoundary);
         }
     }
@@ -69,37 +67,18 @@ public class EnavFixViewModel : PropertyChangedBase, IViewModel
         if (FilePath is null) return;
         if (!_enavDoc.IsRead) _enavDoc.Read(FilePath);
 
-        var data = _enavDoc.GetContents(AuroraFixEncoder.All);
+        var data = _enavDoc.GetContents(AuroraFixEncoder.Instance);
         await this.SaveToFile("itfix");
     }
 
-    public bool CanExportEnroute => CanExport;
-    public async Task ExportEnroute()
-    {
-        if (FilePath is null) return;
-        if (!_enavDoc.IsRead) _enavDoc.Read(FilePath);
-
-        var data = _enavDoc.GetContents(AuroraFixEncoder.Enroute);
-        await this.SaveToFile("itfix_enr_fra");
-    }
-
-    public bool CanExportTerminal => CanExport;
-    public async Task ExportTerminal()
-    {
-        if (FilePath is null) return;
-        if (!_enavDoc.IsRead) _enavDoc.Read(FilePath);
-
-        var data = _enavDoc.GetContents(AuroraFixEncoder.Terminal);
-        await this.SaveToFile("itfix_term_apt");
-    }
-
+  
     public bool CanExportBoundary => CanExport;
     public async Task ExportBoundary()
     {
         if (FilePath is null) return;
         if (!_enavDoc.IsRead) _enavDoc.Read(FilePath);
 
-        var data = _enavDoc.GetContents(AuroraFixEncoder.Boundary);
+        var data = _enavDoc.GetContents(AuroraFixToStringEncoder.Instance);
         await this.SaveToFile("itfix_fra_bdry");
     }
 

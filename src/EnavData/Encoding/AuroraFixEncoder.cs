@@ -1,30 +1,11 @@
-﻿using System.Diagnostics;
-
-using Ivao.It.AuroraHelper.EnavData.Extensions;
+﻿using Ivao.It.AuroraHelper.EnavData.Extensions;
 using Ivao.It.AuroraHelper.EnavData.Models;
 
 namespace Ivao.It.AuroraHelper.EnavData.Encoding;
 
 public class AuroraFixEncoder : IEncodingStrategy
 {
-    private readonly FixType _type;
-
-    public enum FixType
-    {
-        All,
-        Enr,
-        Term,
-        Boundary,
-    }
-
-    private AuroraFixEncoder(FixType type = FixType.All)
-    {
-        _type = type;
-    }
-    public static readonly AuroraFixEncoder All = new AuroraFixEncoder(FixType.All);
-    public static readonly AuroraFixEncoder Enroute = new AuroraFixEncoder(FixType.Enr);
-    public static readonly AuroraFixEncoder Terminal = new AuroraFixEncoder(FixType.Term);
-    public static readonly AuroraFixEncoder Boundary = new AuroraFixEncoder(FixType.Boundary);
+    public static readonly AuroraFixEncoder Instance = new();
 
     string? IEncodingStrategy.Encode<T>(T item)
     {
@@ -40,11 +21,6 @@ public class AuroraFixEncoder : IEncodingStrategy
         6) se il fix compare nelle colonne 3, 4 e 5 va categorizzato come 2;1;
         7) se il fix compare nella solo colonna 5 (ce n'è qualcuno) lo possiamo categorizzare come 0;1; (come il punto 4)
          */
-
-        if (_type == FixType.Boundary)
-        {
-            return $"{fix.Id};{fix.Lat.EnavCoordsToAurora()};{fix.Lon.EnavCoordsToAurora()};";
-        }
 
         int fixType = 0;
         int boundary = 0;
@@ -91,24 +67,6 @@ public class AuroraFixEncoder : IEncodingStrategy
             boundary = 1;
         }
 
-
-        //var fixType = 0; //Enroute
-        //if (fix.IsTerminal) fixType = 1; //Colonna 4
-        //if (fix.IsTerminal && fix.IsEnroute) fixType = 2; // Colonna 5
-
-        //var boundary = fix.IsFra && !fix.IsTerminal ? "1" : "0";
-
-
-        switch (_type)
-        {
-            case FixType.All:
-            case FixType.Enr when fix.IsEnroute:
-            case FixType.Term when fix.IsTerminal:
-            case FixType.Boundary when (fix.IsFra && !fix.IsTerminal):
-                return $"{fix.Id};{fix.Lat.EnavCoordsToAurora()};{fix.Lon.EnavCoordsToAurora()};{fixType};{boundary};";
-            default:
-                return null;
-        }
+        return $"{fix.Id};{fix.Lat.EnavCoordsToAurora()};{fix.Lon.EnavCoordsToAurora()};{fixType};{boundary};";
     }
-
 }

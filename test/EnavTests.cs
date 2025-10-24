@@ -22,40 +22,33 @@ public class EnavTests
     }
 
     [Theory]
-    [InlineData(AuroraFixEncoder.FixType.All, "ODINA", true)]
-    [InlineData(AuroraFixEncoder.FixType.All, "ROKUD", true)]
-    [InlineData(AuroraFixEncoder.FixType.All, "RONIV", true)]
+    [InlineData("ODINA", true)]
+    [InlineData("ROKUD", true)]
+    [InlineData("RONIV", true)]
 
-    [InlineData(AuroraFixEncoder.FixType.Term, "ODINA", true)]
-    [InlineData(AuroraFixEncoder.FixType.Term, "PEVAL", false)]
-    [InlineData(AuroraFixEncoder.FixType.Term, "ROKUD", false)]
-    [InlineData(AuroraFixEncoder.FixType.Term, "RONIV", true)]
+    [InlineData( "ODINA", true)]
+    [InlineData( "PEVAL", false)]
+    [InlineData( "ROKUD", false)]
+    [InlineData( "RONIV", true)]
 
-    [InlineData(AuroraFixEncoder.FixType.Enr, "OSMAR", true)]
-    [InlineData(AuroraFixEncoder.FixType.Enr, "PEVAL", false)]
-    [InlineData(AuroraFixEncoder.FixType.Enr, "ROKUD", true)]
-    [InlineData(AuroraFixEncoder.FixType.Enr, "RONIV", false)]
+    [InlineData("OSMAR", true)]
+    [InlineData("PEVAL", false)]
+    [InlineData("ROKUD", true)]
+    [InlineData("RONIV", false)]
 
-    [InlineData(AuroraFixEncoder.FixType.Boundary, "PEVAL", true)]
-    [InlineData(AuroraFixEncoder.FixType.Boundary, "OSMAR", true)]
-    [InlineData(AuroraFixEncoder.FixType.Boundary, "ODINA", false)]
-    [InlineData(AuroraFixEncoder.FixType.Boundary, "ROKUD", false)]
-    [InlineData(AuroraFixEncoder.FixType.Boundary, "RONIV", false)]
+    [InlineData( "PEVAL", true)]
+    [InlineData( "OSMAR", true)]
+    [InlineData( "ODINA", false)]
+    [InlineData( "ROKUD", false)]
+    [InlineData( "RONIV", false)]
 
-    [InlineData(AuroraFixEncoder.FixType.Enr, "ABAKO", true)]
-    [InlineData(AuroraFixEncoder.FixType.Term, "ABAKO", false)]
-    [InlineData(AuroraFixEncoder.FixType.Boundary, "ABAKO", true)]
-    public void Extract_441_Read_ConvertToAurora(AuroraFixEncoder.FixType type, string fixToFind, bool result)
+    [InlineData("ABAKO", true)]
+    [InlineData("ABAKO", false)]
+    [InlineData( "ABAKO", true)]
+    public void Extract_441_Read_ConvertToAurora(string fixToFind, bool result)
     {
         var doc = new EnrouteDoc441();
-        var encoder = type switch
-        {
-            AuroraFixEncoder.FixType.All => AuroraFixEncoder.All,
-            AuroraFixEncoder.FixType.Enr => AuroraFixEncoder.Enroute,
-            AuroraFixEncoder.FixType.Term => AuroraFixEncoder.Terminal,
-            AuroraFixEncoder.FixType.Boundary => AuroraFixEncoder.Boundary,
-            _ => throw new ArgumentOutOfRangeException("type"),
-        };
+        var encoder = AuroraFixEncoder.Instance;
 
         var contents = doc.Read(@"C:\Users\E.Innocenti\Downloads\ENR4-4-1.pdf").GetContents(encoder);
 
