@@ -23,7 +23,7 @@ internal class Consts
     public static readonly Regex FixAwyRegex = new ($@"{FixName} {LatRgx} {LonRgx} {AwyIdRgx}", RegexOptions.Compiled);
     public static readonly Regex FixTerminalRegex = new (@"([A-Z]{2} ((sid)|(star)|(ial)))", RegexOptions.Compiled); //
     public static readonly Regex FixFraBoundaryRegex = new (@"(FRA\()([EX]{1,2})(\))", RegexOptions.Compiled);
-    public static readonly Regex FixFraRegex = new (@"(FRA\()([EXADI]{1,2})(\))", RegexOptions.Compiled);
+    public static readonly Regex FixFraRegex = new (@"(FRA\()([EXADI]{1,})(\))", RegexOptions.Compiled);
     public static readonly Regex FixFraAwyRegex = new ($@"{FixName} {LatRgx} {LonRgx} ({NilRgx}) ({NilRgx}) {FraEnroute}", RegexOptions.Compiled);
 
     public static readonly Regex CoordsCardPoint = new("[NSWE]{1}", RegexOptions.Compiled);
