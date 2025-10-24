@@ -14,7 +14,7 @@ public class AuroraFixEncoder : IEncodingStrategy
         All,
         Enr,
         Term,
-        Boundary
+        Boundary,
     }
 
     private AuroraFixEncoder(FixType type = FixType.All)
@@ -40,6 +40,11 @@ public class AuroraFixEncoder : IEncodingStrategy
         6) se il fix compare nelle colonne 3, 4 e 5 va categorizzato come 2;1;
         7) se il fix compare nella solo colonna 5 (ce n'è qualcuno) lo possiamo categorizzare come 0;1; (come il punto 4)
          */
+
+        if (_type == FixType.Boundary)
+        {
+            return $"{fix.Id};{fix.Lat.EnavCoordsToAurora()};{fix.Lon.EnavCoordsToAurora()};";
+        }
 
         int fixType = 0;
         int boundary = 0;

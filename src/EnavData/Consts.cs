@@ -21,14 +21,14 @@ internal class Consts
     public static readonly Regex FixFileRowCleanupRegex = new ($@"^{FixName}(?= )(?! effective)", RegexOptions.Compiled);
 
     public static readonly Regex FixAwyRegex = new ($@"{FixName} {LatRgx} {LonRgx} {AwyIdRgx}", RegexOptions.Compiled);
-    public static readonly Regex FixTerminalRegex = new ("([A-Z]){5} ([3-4]\\d°\\d{2}'\\d{2}''N) (0[0-5]\\d°\\d{2}'\\d{2}''E) ([K,U,S]{0,1}[A-Z]{1}[0-9]{1,3}|NIL) (?!NIL)", RegexOptions.Compiled); //
-    public static readonly Regex FixFraBoundaryRegex = new ("(FRA\\()([EXAD]{1,2})(\\)$)", RegexOptions.Compiled);
-    public static readonly Regex FixFraRegex = new ("(FRA\\()([EXADI]{1,2})(\\)$)", RegexOptions.Compiled);
+    public static readonly Regex FixTerminalRegex = new (@"([A-Z]){5} ([3-4]\d°\d{2}'\d{2}''N) (0[0-5]\d°\d{2}'\d{2}''E) ([K,U,S]{0,1}[A-Z]{1}[0-9]{1,3}|NIL) (?!NIL)", RegexOptions.Compiled); //
+    public static readonly Regex FixFraBoundaryRegex = new (@"(FRA\()([EX]{1,2})(\))", RegexOptions.Compiled);
+    public static readonly Regex FixFraRegex = new (@"(FRA\()([EXADI]{1,2})(\)$)", RegexOptions.Compiled);
     public static readonly Regex FixFraAwyRegex = new ($@"{FixName} {LatRgx} {LonRgx} ({NilRgx}) ({NilRgx}) {FraEnroute}", RegexOptions.Compiled);
 
     public static readonly Regex CoordsCardPoint = new("[NSWE]{1}", RegexOptions.Compiled);
-    public static readonly Regex CoordsDeegres = new("\\d{2,3}(?=°)", RegexOptions.Compiled);
-    public static readonly Regex CoordsMinutes = new("\\d{2,3}(?=')", RegexOptions.Compiled);
-    public static readonly Regex CoordsSeconds = new("\\d{2,3}(?='')", RegexOptions.Compiled);
+    public static readonly Regex CoordsDeegres = new(@"\d{2,3}(?=°)", RegexOptions.Compiled);
+    public static readonly Regex CoordsMinutes = new(@"\d{2,3}(?=')", RegexOptions.Compiled);
+    public static readonly Regex CoordsSeconds = new(@"\d{2,3}(?='')", RegexOptions.Compiled);
 
 }

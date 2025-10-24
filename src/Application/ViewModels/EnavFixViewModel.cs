@@ -32,6 +32,7 @@ public class EnavFixViewModel : PropertyChangedBase, IViewModel
         {
             _filePath = value;
             NotifyOfPropertyChange();
+            NotifyOfPropertyChange(() => CanExportAll);
             NotifyOfPropertyChange(() => CanExportEnroute);
             NotifyOfPropertyChange(() => CanExportTerminal);
             NotifyOfPropertyChange(() => CanExportBoundary);
@@ -61,6 +62,16 @@ public class EnavFixViewModel : PropertyChangedBase, IViewModel
 
 
     public bool CanExport => !string.IsNullOrWhiteSpace(FilePath);
+
+    public bool CanExportAll => CanExport;
+    public async Task ExportAll()
+    {
+        if (FilePath is null) return;
+        if (!_enavDoc.IsRead) _enavDoc.Read(FilePath);
+
+        var data = _enavDoc.GetContents(AuroraFixEncoder.All);
+        await this.SaveToFile("itfix");
+    }
 
     public bool CanExportEnroute => CanExport;
     public async Task ExportEnroute()
